@@ -1,5 +1,0 @@
-#include "Pods-LegalRef-TBXML.xcconfig"
-GCC_PREPROCESSOR_DEFINITIONS = COCOAPODS=1 ${PODS_LEGALREF_TBXML_GCC_PREPROCESSOR_DEFINITIONS}
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/BuildHeaders" "${PODS_ROOT}/BuildHeaders/TBXML" "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/AFNetworking" "${PODS_ROOT}/Headers/MCPanelViewController" "${PODS_ROOT}/Headers/TBXML" "${PODS_ROOT}/Headers/TBXML+NSDictionary" "${PODS_ROOT}/Headers/TWTSideMenuViewController"
-OTHER_LDFLAGS = -ObjC ${PODS_LEGALREF_TBXML_OTHER_LDFLAGS}
-PODS_ROOT = ${SRCROOT}
