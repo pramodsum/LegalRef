@@ -1,1 +1,0 @@
-../../MCPanelViewController/MCPanelViewController/MCPanGestureRecognizer.h
