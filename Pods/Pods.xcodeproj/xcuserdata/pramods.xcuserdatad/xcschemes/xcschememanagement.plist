@@ -9,6 +9,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-LegalRef-MGImageUtilities.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-LegalRef-TWTSideMenuViewController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-LegalRef.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -17,12 +27,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>A22FEE3710D54B32A3E4FF69</key>
+		<key>27E101BA1B1549DDAFAD70FE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F967423477ED4D53B1B2F021</key>
+		<key>40598B58A87F48FEB2AC069C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8510AD132DE6444592674A3A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>989878FA27F94D639F25A20C</key>
 		<dict>
 			<key>primary</key>
 			<true/>

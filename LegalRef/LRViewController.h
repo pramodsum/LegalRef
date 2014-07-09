@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LRViewController : UIViewController
+@interface LRViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+    UITableView *tableView;
+}
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+- (IBAction)menuView:(id)sender;
 
 @end

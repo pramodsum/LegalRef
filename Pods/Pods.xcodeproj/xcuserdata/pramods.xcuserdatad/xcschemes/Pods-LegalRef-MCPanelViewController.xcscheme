@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A22FEE3710D54B32A3E4FF69"
+               BlueprintIdentifier = "27E101BA1B1549DDAFAD70FE"
                BuildableName = "libPods-LegalRef-MCPanelViewController.a"
                BlueprintName = "Pods-LegalRef-MCPanelViewController"
                ReferencedContainer = "container:Pods.xcodeproj">
