@@ -7,7 +7,6 @@
 //
 
 #import "LRPanelViewController.h"
-#import <MGImageUtilities/UIImage+Tint.h>
 
 @interface LRPanelViewController ()
 
@@ -32,11 +31,6 @@
     self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"lawlibrary-menu"]];
 
     [self.navigationController.navigationBar setHidden:YES];
-
-    //tint images
-    [_saved.image imageTintedWithColor:[UIColor whiteColor]];
-    [_history.image imageTintedWithColor:[UIColor whiteColor]];
-    [_about.image imageTintedWithColor:[UIColor whiteColor]];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;

@@ -4,12 +4,22 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Pods-LegalRef-AFNetworking.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-LegalRef-MCPanelViewController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-LegalRef-MGImageUtilities.xcscheme</key>
+		<key>Pods-LegalRef-TBXML+NSDictionary.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-LegalRef-TBXML.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -27,22 +37,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>27E101BA1B1549DDAFAD70FE</key>
+		<key>0721AF9102A2419FB003D75D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>40598B58A87F48FEB2AC069C</key>
+		<key>0726BDAF02374C938DF90FCD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8510AD132DE6444592674A3A</key>
+		<key>0BA4BDCB3D13478683E5843C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>989878FA27F94D639F25A20C</key>
+		<key>128ECE0F63214D44820FC2A3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>205FDCBE3D98434BB2C4214F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E3405F1E548E48FBBAE097C5</key>
 		<dict>
 			<key>primary</key>
 			<true/>

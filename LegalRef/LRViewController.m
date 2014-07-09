@@ -8,6 +8,7 @@
 
 #import "LRViewController.h"
 #import <MCPanelViewController.h>
+#import "ScholarSearchRequest.h"
 
 @interface LRViewController ()
 
@@ -16,7 +17,11 @@
 @implementation LRViewController {
     NSArray *categories;
     MCPanelViewController *panelController;
+    ScholarSearchRequest *searchRequest;
 }
+
+@synthesize tableView;
+@synthesize searchbar;
 
 - (void)viewDidLoad
 {
@@ -28,6 +33,9 @@
                                                      action:@selector(oneFingerSwipeLeft:)];
     [oneFingerSwipeLeft setDirection:UISwipeGestureRecognizerDirectionLeft];
     [[self view] addGestureRecognizer:oneFingerSwipeLeft];
+
+    //Searchbar
+    [searchbar setDelegate:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -63,7 +71,14 @@
 
 - (IBAction)menuView:(id)sender {
     [panelController presentInViewController:self.navigationController withDirection:MCPanelAnimationDirectionLeft];
+}
 
+#pragma mark - Search Bar delegate
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    NSLog(@"Querying on: %@", searchBar.text);
+    searchRequest = [[ScholarSearchRequest alloc] init];
+    [searchRequest search:searchBar.text];
 }
 
 #pragma mark - Table view data source

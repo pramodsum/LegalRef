@@ -22,6 +22,8 @@
 		49C940BE196D035800F3FC9B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 49C940BC196D035800F3FC9B /* InfoPlist.strings */; };
 		49C940C0196D035800F3FC9B /* LegalRefTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C940BF196D035800F3FC9B /* LegalRefTests.m */; };
 		49C940D1196D1FD200F3FC9B /* LRPanelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C940D0196D1FD200F3FC9B /* LRPanelViewController.m */; };
+		49C940D4196D32F100F3FC9B /* ScholarSearchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C940D3196D32F100F3FC9B /* ScholarSearchRequest.m */; };
+		49C940D7196D48D500F3FC9B /* LRCaseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C940D6196D48D500F3FC9B /* LRCaseObject.m */; };
 		86C21BE26D76460E9DC71DB3 /* libPods-LegalRef.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32CCD3A7683F46B68AA81621 /* libPods-LegalRef.a */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +60,10 @@
 		49C940BF196D035800F3FC9B /* LegalRefTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LegalRefTests.m; sourceTree = "<group>"; };
 		49C940CF196D1FD200F3FC9B /* LRPanelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRPanelViewController.h; sourceTree = "<group>"; };
 		49C940D0196D1FD200F3FC9B /* LRPanelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRPanelViewController.m; sourceTree = "<group>"; };
+		49C940D2196D32F100F3FC9B /* ScholarSearchRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScholarSearchRequest.h; sourceTree = "<group>"; };
+		49C940D3196D32F100F3FC9B /* ScholarSearchRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScholarSearchRequest.m; sourceTree = "<group>"; };
+		49C940D5196D48D500F3FC9B /* LRCaseObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRCaseObject.h; sourceTree = "<group>"; };
+		49C940D6196D48D500F3FC9B /* LRCaseObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRCaseObject.m; sourceTree = "<group>"; };
 		F04D3A99C29645ECB96500B3 /* Pods-LegalRef.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LegalRef.xcconfig"; path = "Pods/Pods-LegalRef.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -164,6 +170,10 @@
 			children = (
 				49C940A3196D035800F3FC9B /* LRAppDelegate.h */,
 				49C940A4196D035800F3FC9B /* LRAppDelegate.m */,
+				49C940D2196D32F100F3FC9B /* ScholarSearchRequest.h */,
+				49C940D3196D32F100F3FC9B /* ScholarSearchRequest.m */,
+				49C940D5196D48D500F3FC9B /* LRCaseObject.h */,
+				49C940D6196D48D500F3FC9B /* LRCaseObject.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -323,7 +333,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49C940D7196D48D500F3FC9B /* LRCaseObject.m in Sources */,
 				49C940A5196D035800F3FC9B /* LRAppDelegate.m in Sources */,
+				49C940D4196D32F100F3FC9B /* ScholarSearchRequest.m in Sources */,
 				49C940A1196D035800F3FC9B /* main.m in Sources */,
 				49C940AB196D035800F3FC9B /* LRViewController.m in Sources */,
 				49C940D1196D1FD200F3FC9B /* LRPanelViewController.m in Sources */,
