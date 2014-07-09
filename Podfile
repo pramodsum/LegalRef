@@ -5,6 +5,7 @@ target "LegalRef" do
 
 	pod 'MCPanelViewController'
     pod 'TWTSideMenuViewController', :git => 'https://github.com/twotoasters/TWTSideMenuViewController.git'
-    pod 'MGImageUtilities'
+    pod "AFNetworking", "~> 2.0"
+    pod 'TBXML+NSDictionary', '0.0.1'
 
 end
