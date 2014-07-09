@@ -1,0 +1,1 @@
+../../MCPanelViewController/MCPanelViewController/UIImage+ImageEffects.h

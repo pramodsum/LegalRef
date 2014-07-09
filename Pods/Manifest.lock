@@ -1,0 +1,10 @@
+PODS:
+  - MCPanelViewController (0.2.1)
+
+DEPENDENCIES:
+  - MCPanelViewController
+
+SPEC CHECKSUMS:
+  MCPanelViewController: 9174eaad930a3b59c110ef21b36fe66e4b4c354d
+
+COCOAPODS: 0.33.1
