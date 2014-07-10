@@ -10,4 +10,20 @@
 
 @interface LRCaseObject : NSObject
 
+@property (strong, nonatomic) NSString *title;
+
+@property (strong, nonatomic) NSURL *link;
+@property (strong, nonatomic) NSString *citationLocation;
+
+@property (strong, nonatomic) NSString *pubDate;
+
+@property (strong, nonatomic) NSString *description;
+@property (strong, nonatomic) NSString *content;
+
+@property (strong, nonatomic) NSMutableArray *categories;
+@property (strong, nonatomic) NSString *contentType;
+@property (strong, nonatomic) NSString *subjectOfLaw;
+
+- (LRCaseObject *) initFromCaseBriefs:(NSDictionary *)caseResult;
+
 @end

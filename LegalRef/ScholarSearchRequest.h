@@ -11,5 +11,6 @@
 @interface ScholarSearchRequest : NSObject
 
 - (void) search:(NSString *) prompt;
+- (NSArray *) getResults;
 
 @end
