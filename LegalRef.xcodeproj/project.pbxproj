@@ -25,6 +25,7 @@
 		49C940D4196D32F100F3FC9B /* ScholarSearchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C940D3196D32F100F3FC9B /* ScholarSearchRequest.m */; };
 		49C940D7196D48D500F3FC9B /* LRCaseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C940D6196D48D500F3FC9B /* LRCaseObject.m */; };
 		86C21BE26D76460E9DC71DB3 /* libPods-LegalRef.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32CCD3A7683F46B68AA81621 /* libPods-LegalRef.a */; };
+		AB4F4A2C196E226F0067959A /* LRSearchResultsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB4F4A2B196E226F0067959A /* LRSearchResultsTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,8 @@
 		49C940D3196D32F100F3FC9B /* ScholarSearchRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScholarSearchRequest.m; sourceTree = "<group>"; };
 		49C940D5196D48D500F3FC9B /* LRCaseObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRCaseObject.h; sourceTree = "<group>"; };
 		49C940D6196D48D500F3FC9B /* LRCaseObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRCaseObject.m; sourceTree = "<group>"; };
+		AB4F4A2A196E226F0067959A /* LRSearchResultsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRSearchResultsTableViewController.h; sourceTree = "<group>"; };
+		AB4F4A2B196E226F0067959A /* LRSearchResultsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRSearchResultsTableViewController.m; sourceTree = "<group>"; };
 		F04D3A99C29645ECB96500B3 /* Pods-LegalRef.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LegalRef.xcconfig"; path = "Pods/Pods-LegalRef.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -189,12 +192,30 @@
 		49C940CB196D165400F3FC9B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				49C940A9196D035800F3FC9B /* LRViewController.h */,
-				49C940AA196D035800F3FC9B /* LRViewController.m */,
+				AB4F4A28196E224E0067959A /* Menu */,
+				AB4F4A29196E22590067959A /* Search */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		AB4F4A28196E224E0067959A /* Menu */ = {
+			isa = PBXGroup;
+			children = (
 				49C940CF196D1FD200F3FC9B /* LRPanelViewController.h */,
 				49C940D0196D1FD200F3FC9B /* LRPanelViewController.m */,
 			);
-			name = Controller;
+			name = Menu;
+			sourceTree = "<group>";
+		};
+		AB4F4A29196E22590067959A /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				49C940A9196D035800F3FC9B /* LRViewController.h */,
+				49C940AA196D035800F3FC9B /* LRViewController.m */,
+				AB4F4A2A196E226F0067959A /* LRSearchResultsTableViewController.h */,
+				AB4F4A2B196E226F0067959A /* LRSearchResultsTableViewController.m */,
+			);
+			name = Search;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -338,6 +359,7 @@
 				49C940D4196D32F100F3FC9B /* ScholarSearchRequest.m in Sources */,
 				49C940A1196D035800F3FC9B /* main.m in Sources */,
 				49C940AB196D035800F3FC9B /* LRViewController.m in Sources */,
+				AB4F4A2C196E226F0067959A /* LRSearchResultsTableViewController.m in Sources */,
 				49C940D1196D1FD200F3FC9B /* LRPanelViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
