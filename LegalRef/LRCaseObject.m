@@ -10,4 +10,22 @@
 
 @implementation LRCaseObject
 
+- (LRCaseObject *) initFromCaseBriefs:(NSDictionary *)caseResult {
+    _title = caseResult[@"title"];
+    
+    _link = caseResult[@"link"];
+//    _citationLocation = caseResult[@""];
+    
+    _pubDate = caseResult[@"pubDate"];
+    
+    _description = caseResult[@"description"];
+    _content = caseResult[@"content:encoded"];
+    
+    //categories
+    
+//    NSLog(@"%@", _title);
+    
+    return self;
+}
+
 @end

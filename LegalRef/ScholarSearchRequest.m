@@ -9,6 +9,7 @@
 #import "ScholarSearchRequest.h"
 #import <AFNetworking.h>
 #import <TBXML+NSDictionary.h>
+#import "LRCaseObject.h"
 
 @implementation ScholarSearchRequest {
     NSMutableArray *case_results;
@@ -16,25 +17,29 @@
 
 - (void) search:(NSString *) prompt {
     NSURLRequest * urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.casebriefs.com/?s=%@&feed=rss2", prompt]]];
+    
+    case_results = [[NSMutableArray alloc] init];
 
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
 
         if (!error) {
             NSDictionary *dict = [TBXML dictionaryWithXMLData:data error:&error];
-            NSArray *results = [[NSArray alloc] initWithObjects:dict[@"rss"][@"channel"][@"item"], nil];
-            NSLog(@"%@", results);
+            NSDictionary *results = [[[dict objectForKey:@"rss"] objectForKey:@"channel"] objectForKey:@"item"];
+//            NSLog(@"Results: %@", results);
+            for(NSDictionary *caseResult in results) {
+//                NSLog(@"%@", caseResult);
+                LRCaseObject *caseItem = [[LRCaseObject alloc] initFromCaseBriefs:caseResult];
+                [case_results addObject:caseItem];
+            }
+//            NSLog(@"%@", case_results);
         } else {
             NSLog(@"ERROR: %@", error);
         }
     }];
+}
 
-//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-//    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-//    [manager POST:[NSString stringWithFormat:@"http://scholar.google.com/scholar?q=%@&btnG=&hl=en&as_sdt=2006", prompt] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        NSLog(@"RESPONSE: %@", responseObject);
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        NSLog(@"Error: %@", error);
-//    }];
+- (NSArray *) getResults {
+    return case_results;
 }
 
 @end

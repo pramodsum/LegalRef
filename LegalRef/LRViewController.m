@@ -9,6 +9,7 @@
 #import "LRViewController.h"
 #import <MCPanelViewController.h>
 #import "ScholarSearchRequest.h"
+#import "LRSearchResultsTableViewController.h"
 
 @interface LRViewController ()
 
@@ -79,6 +80,10 @@
     NSLog(@"Querying on: %@", searchBar.text);
     searchRequest = [[ScholarSearchRequest alloc] init];
     [searchRequest search:searchBar.text];
+    
+    LRSearchResultsTableViewController *vc = [[LRSearchResultsTableViewController alloc] init];
+    [vc setResults: [[NSArray alloc] initWithArray:[searchRequest getResults]]];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - Table view data source
