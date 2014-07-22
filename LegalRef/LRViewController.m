@@ -10,8 +10,14 @@
 #import <MCPanelViewController.h>
 #import "ScholarSearchRequest.h"
 #import "LRSearchResultsTableViewController.h"
+#import <TBXML+NSDictionary.h>
+#import "LRCaseObject.h"
 
 @interface LRViewController ()
+
+@property (nonatomic, strong) IBOutlet UITapGestureRecognizer *tapRecognizer;
+@property (nonatomic, strong) IBOutlet UISwipeGestureRecognizer *swipeRightRecognizer;
+@property (nonatomic, strong) IBOutlet UISegmentedControl *segmentedControl;
 
 @end
 
@@ -19,6 +25,7 @@
     NSArray *categories;
     MCPanelViewController *panelController;
     ScholarSearchRequest *searchRequest;
+    NSMutableArray *case_results;
 }
 
 @synthesize tableView;
@@ -29,18 +36,17 @@
     [super viewDidLoad];
 
     // Add swipeGestures
-    UISwipeGestureRecognizer *oneFingerSwipeLeft = [[UISwipeGestureRecognizer alloc]
-                                                     initWithTarget:self
-                                                     action:@selector(oneFingerSwipeLeft:)];
-    [oneFingerSwipeLeft setDirection:UISwipeGestureRecognizerDirectionLeft];
-    [[self view] addGestureRecognizer:oneFingerSwipeLeft];
+    UISwipeGestureRecognizer *gestureRight;
+    gestureRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeRight:)];//direction is set by default.
+    //[gesture setNumberOfTouchesRequired:1];//default is 1
+    [[self view] addGestureRecognizer:gestureRight];//this gets things rolling.
 
     //Searchbar
     [searchbar setDelegate:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [self.navigationController.navigationBar setHidden:YES];
+    //[self.navigationController.navigationBar setHidden:YES];
     [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:[UIColor whiteColor]];
 
     //Initialize Categories
@@ -66,12 +72,14 @@
 
 #pragma mark - Swipe Gestures
 
-- (void)oneFingerSwipeLeft:(UITapGestureRecognizer *)recognizer {
-    [panelController presentInViewController:self.navigationController withDirection:MCPanelAnimationDirectionLeft];
-}
-
-- (IBAction)menuView:(id)sender {
-    [panelController presentInViewController:self.navigationController withDirection:MCPanelAnimationDirectionLeft];
+- (void)swipeRight:(UISwipeGestureRecognizer *)gesture
+{
+    NSLog(@"Right Swipe received.");//Lets you know this method was called by gesture recognizer.for confirmation (1=right).
+    //only interested in gesture if gesture state == changed or ended (From Paul Hegarty @ standford U
+    if ((gesture.state == UIGestureRecognizerStateChanged) ||
+        (gesture.state == UIGestureRecognizerStateEnded)) {
+        [panelController presentInViewController:self.navigationController withDirection:MCPanelAnimationDirectionLeft];
+    }
 }
 
 #pragma mark - Search Bar delegate
@@ -79,11 +87,33 @@
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     NSLog(@"Querying on: %@", searchBar.text);
     searchRequest = [[ScholarSearchRequest alloc] init];
-    [searchRequest search:searchBar.text];
-    
-    LRSearchResultsTableViewController *vc = [[LRSearchResultsTableViewController alloc] init];
-    [vc setResults: [[NSArray alloc] initWithArray:[searchRequest getResults]]];
-    [self.navigationController pushViewController:vc animated:YES];
+
+    NSURLRequest * urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.casebriefs.com/?s=%@&feed=rss2", searchBar.text]]];
+
+    case_results = [[NSMutableArray alloc] init];
+
+    [NSURLConnection sendAsynchronousRequest:urlRequest queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+
+        if (!error) {
+            NSDictionary *dict = [TBXML dictionaryWithXMLData:data error:&error];
+            NSDictionary *results = [[[dict objectForKey:@"rss"] objectForKey:@"channel"] objectForKey:@"item"];
+            //            NSLog(@"Results: %@", results);
+            for(NSDictionary *caseResult in results) {
+                //                NSLog(@"%@", caseResult);
+                LRCaseObject *caseItem = [[LRCaseObject alloc] initFromCaseBriefs:caseResult];
+                [case_results addObject:caseItem];
+            }
+            //            NSLog(@"%@", case_results);
+
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                [self performSegueWithIdentifier:@"search_results_segue" sender:self];
+            }];
+        } else {
+            NSLog(@"ERROR: %@", error);
+        }
+    }];
+
+
 }
 
 #pragma mark - Table view data source
@@ -108,52 +138,18 @@
     return cell;
 }
 
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
+#pragma mark - Navigation
 
-/*
- // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
- {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
- } else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }
- }
- */
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+    if([[segue identifier] isEqual: @"search_results_segue"]) {
+        LRSearchResultsTableViewController *vc = [[LRSearchResultsTableViewController alloc] init];
+        NSLog(@"%lu results found.", (unsigned long)[case_results count]);
+        [vc setResults: [[NSArray alloc] initWithArray:case_results]];
+    }
+}
 
-/*
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
- {
- }
- */
-
-/*
- // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
- }
- */
-
-/*
- #pragma mark - Navigation
-
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
- {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 @end

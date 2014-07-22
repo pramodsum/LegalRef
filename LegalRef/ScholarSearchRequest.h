@@ -10,7 +10,7 @@
 
 @interface ScholarSearchRequest : NSObject
 
-- (void) search:(NSString *) prompt;
+- (void) search:(NSString *) prompt completion:(void (^)(BOOL finished))completion;
 - (NSArray *) getResults;
 
 @end

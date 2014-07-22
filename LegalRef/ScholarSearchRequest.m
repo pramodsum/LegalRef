@@ -7,7 +7,6 @@
 //
 
 #import "ScholarSearchRequest.h"
-#import <AFNetworking.h>
 #import <TBXML+NSDictionary.h>
 #import "LRCaseObject.h"
 
@@ -15,27 +14,35 @@
     NSMutableArray *case_results;
 }
 
-- (void) search:(NSString *) prompt {
+- (void) search:(NSString *) prompt completion:(void (^)(BOOL finished))completion {
     NSURLRequest * urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.casebriefs.com/?s=%@&feed=rss2", prompt]]];
     
     case_results = [[NSMutableArray alloc] init];
 
-    [NSURLConnection sendAsynchronousRequest:urlRequest queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+    void (^closeCompleteBlock)(BOOL) = ^(BOOL finished) {
+        if (!finished) {
+            [NSURLConnection sendAsynchronousRequest:urlRequest queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
 
-        if (!error) {
-            NSDictionary *dict = [TBXML dictionaryWithXMLData:data error:&error];
-            NSDictionary *results = [[[dict objectForKey:@"rss"] objectForKey:@"channel"] objectForKey:@"item"];
-//            NSLog(@"Results: %@", results);
-            for(NSDictionary *caseResult in results) {
-//                NSLog(@"%@", caseResult);
-                LRCaseObject *caseItem = [[LRCaseObject alloc] initFromCaseBriefs:caseResult];
-                [case_results addObject:caseItem];
-            }
-//            NSLog(@"%@", case_results);
-        } else {
-            NSLog(@"ERROR: %@", error);
+                if (!error) {
+                    NSDictionary *dict = [TBXML dictionaryWithXMLData:data error:&error];
+                    NSDictionary *results = [[[dict objectForKey:@"rss"] objectForKey:@"channel"] objectForKey:@"item"];
+                    //            NSLog(@"Results: %@", results);
+                    for(NSDictionary *caseResult in results) {
+                        //                NSLog(@"%@", caseResult);
+                        LRCaseObject *caseItem = [[LRCaseObject alloc] initFromCaseBriefs:caseResult];
+                        [case_results addObject:caseItem];
+                    }
+                    //            NSLog(@"%@", case_results);
+                } else {
+                    NSLog(@"ERROR: %@", error);
+                }
+            }];
         }
-    }];
+
+        if (completion) {
+            completion(finished);
+        }
+    };
 }
 
 - (NSArray *) getResults {

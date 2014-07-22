@@ -8,11 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LRViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate> {
+@interface LRViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UIGestureRecognizerDelegate> {
     UITableView *tableView;
 }
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-- (IBAction)menuView:(id)sender;
 @property (strong, nonatomic) IBOutlet UISearchBar *searchbar;
 
 @end
